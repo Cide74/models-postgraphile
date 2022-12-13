@@ -9,7 +9,7 @@
     "watch": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Régis BLEC",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.20.1",
