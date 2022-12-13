@@ -19,4 +19,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(postgraphile);
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => (
+  console.log(
+    `Server running 🚀 on port ${PORT} 🎉 =`,
+    `http://localhost:${PORT}/graphiql`,
+    `= http://127.0.0.1:${PORT}/graphiql`
+  )
+));
+
+

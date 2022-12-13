@@ -17,8 +17,8 @@ type Query implements Node {
     nodeId: ID!
   ): Node
 
-  """Reads and enables pagination through a set of `Article`."""
-  allArticles(
+  """Reads and enables pagination through a set of `Todo`."""
+  allTodos(
     """Only read the first `n` values of the set."""
     first: Int
 
@@ -37,249 +37,21 @@ type Query implements Node {
     """Read all values in the set after (below) this cursor."""
     after: Cursor
 
-    """The method to use when ordering `Article`."""
-    orderBy: [ArticlesOrderBy!] = [PRIMARY_KEY_ASC]
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
 
     """
     A condition to be used in determining which values should be returned by the collection.
     """
-    condition: ArticleCondition
-  ): ArticlesConnection
+    condition: TodoCondition
+  ): TodosConnection
+  todoById(id: UUID!): Todo
 
-  """
-  Reads and enables pagination through a set of `ArticleGuestbookCommentSimulationUser`.
-  """
-  allArticleGuestbookCommentSimulationUsers(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """
-    The method to use when ordering `ArticleGuestbookCommentSimulationUser`.
-    """
-    orderBy: [ArticleGuestbookCommentSimulationUsersOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ArticleGuestbookCommentSimulationUserCondition
-  ): ArticleGuestbookCommentSimulationUsersConnection
-
-  """Reads and enables pagination through a set of `Comment`."""
-  allComments(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CommentCondition
-  ): CommentsConnection
-
-  """Reads and enables pagination through a set of `Guestbook`."""
-  allGuestbooks(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Guestbook`."""
-    orderBy: [GuestbooksOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: GuestbookCondition
-  ): GuestbooksConnection
-
-  """Reads and enables pagination through a set of `Infosimulation`."""
-  allInfosimulations(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Infosimulation`."""
-    orderBy: [InfosimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: InfosimulationCondition
-  ): InfosimulationsConnection
-
-  """Reads and enables pagination through a set of `Nbsimulation`."""
-  allNbsimulations(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Nbsimulation`."""
-    orderBy: [NbsimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NbsimulationCondition
-  ): NbsimulationsConnection
-
-  """Reads and enables pagination through a set of `User`."""
-  allUsers(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: UserCondition
-  ): UsersConnection
-  articleById(id: Int!): Article
-  articleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserId(articleId: Int!, guestbookId: Int!, commentId: Int!, infosimulationId: Int!, nbsimulationId: Int!, userId: Int!): ArticleGuestbookCommentSimulationUser
-  commentById(id: Int!): Comment
-  guestbookById(id: Int!): Guestbook
-  infosimulationById(id: Int!): Infosimulation
-  nbsimulationById(id: Int!): Nbsimulation
-  userById(id: Int!): User
-
-  """Reads a single `Article` using its globally unique `ID`."""
-  article(
-    """The globally unique `ID` to be used in selecting a single `Article`."""
+  """Reads a single `Todo` using its globally unique `ID`."""
+  todo(
+    """The globally unique `ID` to be used in selecting a single `Todo`."""
     nodeId: ID!
-  ): Article
-
-  """
-  Reads a single `ArticleGuestbookCommentSimulationUser` using its globally unique `ID`.
-  """
-  articleGuestbookCommentSimulationUser(
-    """
-    The globally unique `ID` to be used in selecting a single `ArticleGuestbookCommentSimulationUser`.
-    """
-    nodeId: ID!
-  ): ArticleGuestbookCommentSimulationUser
-
-  """Reads a single `Comment` using its globally unique `ID`."""
-  comment(
-    """The globally unique `ID` to be used in selecting a single `Comment`."""
-    nodeId: ID!
-  ): Comment
-
-  """Reads a single `Guestbook` using its globally unique `ID`."""
-  guestbook(
-    """The globally unique `ID` to be used in selecting a single `Guestbook`."""
-    nodeId: ID!
-  ): Guestbook
-
-  """Reads a single `Infosimulation` using its globally unique `ID`."""
-  infosimulation(
-    """
-    The globally unique `ID` to be used in selecting a single `Infosimulation`.
-    """
-    nodeId: ID!
-  ): Infosimulation
-
-  """Reads a single `Nbsimulation` using its globally unique `ID`."""
-  nbsimulation(
-    """
-    The globally unique `ID` to be used in selecting a single `Nbsimulation`.
-    """
-    nodeId: ID!
-  ): Nbsimulation
-
-  """Reads a single `User` using its globally unique `ID`."""
-  user(
-    """The globally unique `ID` to be used in selecting a single `User`."""
-    nodeId: ID!
-  ): User
+  ): Todo
 }
 
 """An object with a globally unique `ID`."""
@@ -290,67 +62,39 @@ interface Node {
   nodeId: ID!
 }
 
-"""A connection to a list of `Article` values."""
-type ArticlesConnection {
-  """A list of `Article` objects."""
-  nodes: [Article]!
+"""A connection to a list of `Todo` values."""
+type TodosConnection {
+  """A list of `Todo` objects."""
+  nodes: [Todo]!
 
   """
-  A list of edges which contains the `Article` and cursor to aid in pagination.
+  A list of edges which contains the `Todo` and cursor to aid in pagination.
   """
-  edges: [ArticlesEdge!]!
+  edges: [TodosEdge!]!
 
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
-  """The count of *all* `Article` you could get from the connection."""
+  """The count of *all* `Todo` you could get from the connection."""
   totalCount: Int!
 }
 
-type Article implements Node {
+type Todo implements Node {
   """
   A globally unique identifier. Can be used in various places throughout the system to identify this single value.
   """
   nodeId: ID!
-  id: Int!
-  title: String!
-  content: String!
+  id: UUID!
+  text: String!
+  finished: Boolean
   createdAt: Datetime!
   updatedAt: Datetime
-  userId: Int
-
-  """Reads a single `User` that is related to this `Article`."""
-  userByUserId: User
-
-  """Reads and enables pagination through a set of `Comment`."""
-  commentsByArticleId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CommentCondition
-  ): CommentsConnection!
 }
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
 
 """
 A point in time as described by the [ISO
@@ -358,253 +102,13 @@ A point in time as described by the [ISO
 """
 scalar Datetime
 
-type User implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: Int!
-  pseudo: String!
-  password: String!
-  email: String!
-  author: String
-  role: Int!
-  createdAt: Datetime!
-  updatedAt: Datetime
-
-  """Reads and enables pagination through a set of `Infosimulation`."""
-  infosimulationsByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Infosimulation`."""
-    orderBy: [InfosimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: InfosimulationCondition
-  ): InfosimulationsConnection!
-
-  """Reads and enables pagination through a set of `Article`."""
-  articlesByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Article`."""
-    orderBy: [ArticlesOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: ArticleCondition
-  ): ArticlesConnection!
-
-  """Reads and enables pagination through a set of `Guestbook`."""
-  guestbooksByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Guestbook`."""
-    orderBy: [GuestbooksOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: GuestbookCondition
-  ): GuestbooksConnection!
-
-  """Reads and enables pagination through a set of `Comment`."""
-  commentsByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CommentCondition
-  ): CommentsConnection!
-
-  """Reads and enables pagination through a set of `Nbsimulation`."""
-  nbsimulationsByUserId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Nbsimulation`."""
-    orderBy: [NbsimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: NbsimulationCondition
-  ): NbsimulationsConnection!
-}
-
-"""A connection to a list of `Infosimulation` values."""
-type InfosimulationsConnection {
-  """A list of `Infosimulation` objects."""
-  nodes: [Infosimulation]!
-
-  """
-  A list of edges which contains the `Infosimulation` and cursor to aid in pagination.
-  """
-  edges: [InfosimulationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Infosimulation` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Infosimulation implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: Int!
-  year: Int!
-  aahAmount: String!
-  mvaAmount: String!
-  smichb: String!
-  smicnbtf: String!
-  ageMinimal: Int!
-  ageRetraite: Int!
-  disabilityRateMini: String!
-  disabilityRateMax: String!
-  majorationPlafonCouple: String!
-  coefPersonneACharge: String!
-  householdComposition: String!
-  nbChild: Int!
-  placeOfResidence: Boolean!
-  apl: String!
-  applicantAge: Int!
-  applicantDisability: Boolean!
-  applicantDisabilityRate: String!
-  applicantEligibilityAah: Boolean!
-  applicantEligibilityMva: Boolean!
-  applicantIncomeWithoutActivity: Int!
-  applicantIncomeWithActivity: Int!
-  spouseAge: Int
-  spouseDisability: Boolean
-  spouseDisabilityRate: String
-  spouseEligibilityAah: Boolean
-  spouseEligibilityMva: Boolean
-  spouseIncomeWithoutActivity: Int
-  spouseIncomeWithActivity: Int
-  childIncome1: Int
-  childIncome2: Int
-  childIncome3: Int
-  childIncome4: Int
-  childIncome5: Int
-  coefFoyer: String!
-  plafondFoyerAnnuel: String!
-  plafondFoyerMensuel: String!
-  eligibiliteAahFoyer: Boolean!
-  eligibiliteMvaFoyer: Boolean!
-  abattement2022: Int
-  assietteDemandeur: String!
-  assietteConjoint: String!
-  assietteEnfant: String!
-  assietteTotal: String!
-  aahMax: String!
-  montantAahSansMvaMensuel: String!
-  montantAahAvecMvaMensuel: String!
-  statusAah: String!
-  statusSimple: String!
-  createdAt: Datetime!
-  updatedAt: Datetime
-  userId: Int
-
-  """Reads a single `User` that is related to this `Infosimulation`."""
-  userByUserId: User
-}
-
-"""A `Infosimulation` edge in the connection."""
-type InfosimulationsEdge {
+"""A `Todo` edge in the connection."""
+type TodosEdge {
   """A cursor for use in pagination."""
   cursor: Cursor
 
-  """The `Infosimulation` at the end of the edge."""
-  node: Infosimulation
+  """The `Todo` at the end of the edge."""
+  node: Todo
 }
 
 """A location in a connection that can be used for resuming pagination."""
@@ -625,769 +129,15 @@ type PageInfo {
   endCursor: Cursor
 }
 
-"""Methods to use when ordering `Infosimulation`."""
-enum InfosimulationsOrderBy {
+"""Methods to use when ordering `Todo`."""
+enum TodosOrderBy {
   NATURAL
   ID_ASC
   ID_DESC
-  YEAR_ASC
-  YEAR_DESC
-  AAH_AMOUNT_ASC
-  AAH_AMOUNT_DESC
-  MVA_AMOUNT_ASC
-  MVA_AMOUNT_DESC
-  SMICHB_ASC
-  SMICHB_DESC
-  SMICNBTF_ASC
-  SMICNBTF_DESC
-  AGE_MINIMAL_ASC
-  AGE_MINIMAL_DESC
-  AGE_RETRAITE_ASC
-  AGE_RETRAITE_DESC
-  DISABILITY_RATE_MINI_ASC
-  DISABILITY_RATE_MINI_DESC
-  DISABILITY_RATE_MAX_ASC
-  DISABILITY_RATE_MAX_DESC
-  MAJORATION_PLAFON_COUPLE_ASC
-  MAJORATION_PLAFON_COUPLE_DESC
-  COEF_PERSONNE_ACHARGE_ASC
-  COEF_PERSONNE_ACHARGE_DESC
-  HOUSEHOLD_COMPOSITION_ASC
-  HOUSEHOLD_COMPOSITION_DESC
-  NB_CHILD_ASC
-  NB_CHILD_DESC
-  PLACE_OF_RESIDENCE_ASC
-  PLACE_OF_RESIDENCE_DESC
-  APL_ASC
-  APL_DESC
-  APPLICANT_AGE_ASC
-  APPLICANT_AGE_DESC
-  APPLICANT_DISABILITY_ASC
-  APPLICANT_DISABILITY_DESC
-  APPLICANT_DISABILITY_RATE_ASC
-  APPLICANT_DISABILITY_RATE_DESC
-  APPLICANT_ELIGIBILITY_AAH_ASC
-  APPLICANT_ELIGIBILITY_AAH_DESC
-  APPLICANT_ELIGIBILITY_MVA_ASC
-  APPLICANT_ELIGIBILITY_MVA_DESC
-  APPLICANT_INCOME_WITHOUT_ACTIVITY_ASC
-  APPLICANT_INCOME_WITHOUT_ACTIVITY_DESC
-  APPLICANT_INCOME_WITH_ACTIVITY_ASC
-  APPLICANT_INCOME_WITH_ACTIVITY_DESC
-  SPOUSE_AGE_ASC
-  SPOUSE_AGE_DESC
-  SPOUSE_DISABILITY_ASC
-  SPOUSE_DISABILITY_DESC
-  SPOUSE_DISABILITY_RATE_ASC
-  SPOUSE_DISABILITY_RATE_DESC
-  SPOUSE_ELIGIBILITY_AAH_ASC
-  SPOUSE_ELIGIBILITY_AAH_DESC
-  SPOUSE_ELIGIBILITY_MVA_ASC
-  SPOUSE_ELIGIBILITY_MVA_DESC
-  SPOUSE_INCOME_WITHOUT_ACTIVITY_ASC
-  SPOUSE_INCOME_WITHOUT_ACTIVITY_DESC
-  SPOUSE_INCOME_WITH_ACTIVITY_ASC
-  SPOUSE_INCOME_WITH_ACTIVITY_DESC
-  CHILD_INCOME1_ASC
-  CHILD_INCOME1_DESC
-  CHILD_INCOME2_ASC
-  CHILD_INCOME2_DESC
-  CHILD_INCOME3_ASC
-  CHILD_INCOME3_DESC
-  CHILD_INCOME4_ASC
-  CHILD_INCOME4_DESC
-  CHILD_INCOME5_ASC
-  CHILD_INCOME5_DESC
-  COEF_FOYER_ASC
-  COEF_FOYER_DESC
-  PLAFOND_FOYER_ANNUEL_ASC
-  PLAFOND_FOYER_ANNUEL_DESC
-  PLAFOND_FOYER_MENSUEL_ASC
-  PLAFOND_FOYER_MENSUEL_DESC
-  ELIGIBILITE_AAH_FOYER_ASC
-  ELIGIBILITE_AAH_FOYER_DESC
-  ELIGIBILITE_MVA_FOYER_ASC
-  ELIGIBILITE_MVA_FOYER_DESC
-  ABATTEMENT2022_ASC
-  ABATTEMENT2022_DESC
-  ASSIETTE_DEMANDEUR_ASC
-  ASSIETTE_DEMANDEUR_DESC
-  ASSIETTE_CONJOINT_ASC
-  ASSIETTE_CONJOINT_DESC
-  ASSIETTE_ENFANT_ASC
-  ASSIETTE_ENFANT_DESC
-  ASSIETTE_TOTAL_ASC
-  ASSIETTE_TOTAL_DESC
-  AAH_MAX_ASC
-  AAH_MAX_DESC
-  MONTANT_AAH_SANS_MVA_MENSUEL_ASC
-  MONTANT_AAH_SANS_MVA_MENSUEL_DESC
-  MONTANT_AAH_AVEC_MVA_MENSUEL_ASC
-  MONTANT_AAH_AVEC_MVA_MENSUEL_DESC
-  STATUS_AAH_ASC
-  STATUS_AAH_DESC
-  STATUS_SIMPLE_ASC
-  STATUS_SIMPLE_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Infosimulation` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input InfosimulationCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: Int
-
-  """Checks for equality with the object’s `year` field."""
-  year: Int
-
-  """Checks for equality with the object’s `aahAmount` field."""
-  aahAmount: String
-
-  """Checks for equality with the object’s `mvaAmount` field."""
-  mvaAmount: String
-
-  """Checks for equality with the object’s `smichb` field."""
-  smichb: String
-
-  """Checks for equality with the object’s `smicnbtf` field."""
-  smicnbtf: String
-
-  """Checks for equality with the object’s `ageMinimal` field."""
-  ageMinimal: Int
-
-  """Checks for equality with the object’s `ageRetraite` field."""
-  ageRetraite: Int
-
-  """Checks for equality with the object’s `disabilityRateMini` field."""
-  disabilityRateMini: String
-
-  """Checks for equality with the object’s `disabilityRateMax` field."""
-  disabilityRateMax: String
-
-  """Checks for equality with the object’s `majorationPlafonCouple` field."""
-  majorationPlafonCouple: String
-
-  """Checks for equality with the object’s `coefPersonneACharge` field."""
-  coefPersonneACharge: String
-
-  """Checks for equality with the object’s `householdComposition` field."""
-  householdComposition: String
-
-  """Checks for equality with the object’s `nbChild` field."""
-  nbChild: Int
-
-  """Checks for equality with the object’s `placeOfResidence` field."""
-  placeOfResidence: Boolean
-
-  """Checks for equality with the object’s `apl` field."""
-  apl: String
-
-  """Checks for equality with the object’s `applicantAge` field."""
-  applicantAge: Int
-
-  """Checks for equality with the object’s `applicantDisability` field."""
-  applicantDisability: Boolean
-
-  """Checks for equality with the object’s `applicantDisabilityRate` field."""
-  applicantDisabilityRate: String
-
-  """Checks for equality with the object’s `applicantEligibilityAah` field."""
-  applicantEligibilityAah: Boolean
-
-  """Checks for equality with the object’s `applicantEligibilityMva` field."""
-  applicantEligibilityMva: Boolean
-
-  """
-  Checks for equality with the object’s `applicantIncomeWithoutActivity` field.
-  """
-  applicantIncomeWithoutActivity: Int
-
-  """
-  Checks for equality with the object’s `applicantIncomeWithActivity` field.
-  """
-  applicantIncomeWithActivity: Int
-
-  """Checks for equality with the object’s `spouseAge` field."""
-  spouseAge: Int
-
-  """Checks for equality with the object’s `spouseDisability` field."""
-  spouseDisability: Boolean
-
-  """Checks for equality with the object’s `spouseDisabilityRate` field."""
-  spouseDisabilityRate: String
-
-  """Checks for equality with the object’s `spouseEligibilityAah` field."""
-  spouseEligibilityAah: Boolean
-
-  """Checks for equality with the object’s `spouseEligibilityMva` field."""
-  spouseEligibilityMva: Boolean
-
-  """
-  Checks for equality with the object’s `spouseIncomeWithoutActivity` field.
-  """
-  spouseIncomeWithoutActivity: Int
-
-  """
-  Checks for equality with the object’s `spouseIncomeWithActivity` field.
-  """
-  spouseIncomeWithActivity: Int
-
-  """Checks for equality with the object’s `childIncome1` field."""
-  childIncome1: Int
-
-  """Checks for equality with the object’s `childIncome2` field."""
-  childIncome2: Int
-
-  """Checks for equality with the object’s `childIncome3` field."""
-  childIncome3: Int
-
-  """Checks for equality with the object’s `childIncome4` field."""
-  childIncome4: Int
-
-  """Checks for equality with the object’s `childIncome5` field."""
-  childIncome5: Int
-
-  """Checks for equality with the object’s `coefFoyer` field."""
-  coefFoyer: String
-
-  """Checks for equality with the object’s `plafondFoyerAnnuel` field."""
-  plafondFoyerAnnuel: String
-
-  """Checks for equality with the object’s `plafondFoyerMensuel` field."""
-  plafondFoyerMensuel: String
-
-  """Checks for equality with the object’s `eligibiliteAahFoyer` field."""
-  eligibiliteAahFoyer: Boolean
-
-  """Checks for equality with the object’s `eligibiliteMvaFoyer` field."""
-  eligibiliteMvaFoyer: Boolean
-
-  """Checks for equality with the object’s `abattement2022` field."""
-  abattement2022: Int
-
-  """Checks for equality with the object’s `assietteDemandeur` field."""
-  assietteDemandeur: String
-
-  """Checks for equality with the object’s `assietteConjoint` field."""
-  assietteConjoint: String
-
-  """Checks for equality with the object’s `assietteEnfant` field."""
-  assietteEnfant: String
-
-  """Checks for equality with the object’s `assietteTotal` field."""
-  assietteTotal: String
-
-  """Checks for equality with the object’s `aahMax` field."""
-  aahMax: String
-
-  """
-  Checks for equality with the object’s `montantAahSansMvaMensuel` field.
-  """
-  montantAahSansMvaMensuel: String
-
-  """
-  Checks for equality with the object’s `montantAahAvecMvaMensuel` field.
-  """
-  montantAahAvecMvaMensuel: String
-
-  """Checks for equality with the object’s `statusAah` field."""
-  statusAah: String
-
-  """Checks for equality with the object’s `statusSimple` field."""
-  statusSimple: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""Methods to use when ordering `Article`."""
-enum ArticlesOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  TITLE_ASC
-  TITLE_DESC
-  CONTENT_ASC
-  CONTENT_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Article` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input ArticleCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: Int
-
-  """Checks for equality with the object’s `title` field."""
-  title: String
-
-  """Checks for equality with the object’s `content` field."""
-  content: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""A connection to a list of `Guestbook` values."""
-type GuestbooksConnection {
-  """A list of `Guestbook` objects."""
-  nodes: [Guestbook]!
-
-  """
-  A list of edges which contains the `Guestbook` and cursor to aid in pagination.
-  """
-  edges: [GuestbooksEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Guestbook` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Guestbook implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: Int!
-  title: String!
-  content: String!
-  createdAt: Datetime!
-  updatedAt: Datetime
-  userId: Int
-
-  """Reads a single `User` that is related to this `Guestbook`."""
-  userByUserId: User
-
-  """Reads and enables pagination through a set of `Comment`."""
-  commentsByGuestbookId(
-    """Only read the first `n` values of the set."""
-    first: Int
-
-    """Only read the last `n` values of the set."""
-    last: Int
-
-    """
-    Skip the first `n` values from our `after` cursor, an alternative to cursor
-    based pagination. May not be used with `last`.
-    """
-    offset: Int
-
-    """Read all values in the set before (above) this cursor."""
-    before: Cursor
-
-    """Read all values in the set after (below) this cursor."""
-    after: Cursor
-
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-
-    """
-    A condition to be used in determining which values should be returned by the collection.
-    """
-    condition: CommentCondition
-  ): CommentsConnection!
-}
-
-"""A connection to a list of `Comment` values."""
-type CommentsConnection {
-  """A list of `Comment` objects."""
-  nodes: [Comment]!
-
-  """
-  A list of edges which contains the `Comment` and cursor to aid in pagination.
-  """
-  edges: [CommentsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Comment` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Comment implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: Int!
-  content: String!
-  createdAt: Datetime!
-  updatedAt: Datetime
-  deletedAt: Datetime
-  userId: Int
-  articleId: Int
-  guestbookId: Int
-
-  """Reads a single `User` that is related to this `Comment`."""
-  userByUserId: User
-
-  """Reads a single `Article` that is related to this `Comment`."""
-  articleByArticleId: Article
-
-  """Reads a single `Guestbook` that is related to this `Comment`."""
-  guestbookByGuestbookId: Guestbook
-}
-
-"""A `Comment` edge in the connection."""
-type CommentsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Comment` at the end of the edge."""
-  node: Comment
-}
-
-"""Methods to use when ordering `Comment`."""
-enum CommentsOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  CONTENT_ASC
-  CONTENT_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  DELETED_AT_ASC
-  DELETED_AT_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  ARTICLE_ID_ASC
-  ARTICLE_ID_DESC
-  GUESTBOOK_ID_ASC
-  GUESTBOOK_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Comment` object types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input CommentCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: Int
-
-  """Checks for equality with the object’s `content` field."""
-  content: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `deletedAt` field."""
-  deletedAt: Datetime
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-
-  """Checks for equality with the object’s `articleId` field."""
-  articleId: Int
-
-  """Checks for equality with the object’s `guestbookId` field."""
-  guestbookId: Int
-}
-
-"""A `Guestbook` edge in the connection."""
-type GuestbooksEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Guestbook` at the end of the edge."""
-  node: Guestbook
-}
-
-"""Methods to use when ordering `Guestbook`."""
-enum GuestbooksOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  TITLE_ASC
-  TITLE_DESC
-  CONTENT_ASC
-  CONTENT_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Guestbook` object types. All fields are tested
-for equality and combined with a logical ‘and.’
-"""
-input GuestbookCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: Int
-
-  """Checks for equality with the object’s `title` field."""
-  title: String
-
-  """Checks for equality with the object’s `content` field."""
-  content: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""A connection to a list of `Nbsimulation` values."""
-type NbsimulationsConnection {
-  """A list of `Nbsimulation` objects."""
-  nodes: [Nbsimulation]!
-
-  """
-  A list of edges which contains the `Nbsimulation` and cursor to aid in pagination.
-  """
-  edges: [NbsimulationsEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `Nbsimulation` you could get from the connection."""
-  totalCount: Int!
-}
-
-type Nbsimulation implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  id: Int!
-  content: String
-  createdAt: Datetime!
-  updatedAt: Datetime
-  userId: Int
-
-  """Reads a single `User` that is related to this `Nbsimulation`."""
-  userByUserId: User
-}
-
-"""A `Nbsimulation` edge in the connection."""
-type NbsimulationsEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Nbsimulation` at the end of the edge."""
-  node: Nbsimulation
-}
-
-"""Methods to use when ordering `Nbsimulation`."""
-enum NbsimulationsOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  CONTENT_ASC
-  CONTENT_DESC
-  CREATED_AT_ASC
-  CREATED_AT_DESC
-  UPDATED_AT_ASC
-  UPDATED_AT_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `Nbsimulation` object types. All fields are
-tested for equality and combined with a logical ‘and.’
-"""
-input NbsimulationCondition {
-  """Checks for equality with the object’s `id` field."""
-  id: Int
-
-  """Checks for equality with the object’s `content` field."""
-  content: String
-
-  """Checks for equality with the object’s `createdAt` field."""
-  createdAt: Datetime
-
-  """Checks for equality with the object’s `updatedAt` field."""
-  updatedAt: Datetime
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""A `Article` edge in the connection."""
-type ArticlesEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `Article` at the end of the edge."""
-  node: Article
-}
-
-"""
-A connection to a list of `ArticleGuestbookCommentSimulationUser` values.
-"""
-type ArticleGuestbookCommentSimulationUsersConnection {
-  """A list of `ArticleGuestbookCommentSimulationUser` objects."""
-  nodes: [ArticleGuestbookCommentSimulationUser]!
-
-  """
-  A list of edges which contains the `ArticleGuestbookCommentSimulationUser` and cursor to aid in pagination.
-  """
-  edges: [ArticleGuestbookCommentSimulationUsersEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """
-  The count of *all* `ArticleGuestbookCommentSimulationUser` you could get from the connection.
-  """
-  totalCount: Int!
-}
-
-type ArticleGuestbookCommentSimulationUser implements Node {
-  """
-  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
-  """
-  nodeId: ID!
-  articleId: Int!
-  guestbookId: Int!
-  commentId: Int!
-  infosimulationId: Int!
-  nbsimulationId: Int!
-  userId: Int!
-}
-
-"""A `ArticleGuestbookCommentSimulationUser` edge in the connection."""
-type ArticleGuestbookCommentSimulationUsersEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `ArticleGuestbookCommentSimulationUser` at the end of the edge."""
-  node: ArticleGuestbookCommentSimulationUser
-}
-
-"""Methods to use when ordering `ArticleGuestbookCommentSimulationUser`."""
-enum ArticleGuestbookCommentSimulationUsersOrderBy {
-  NATURAL
-  ARTICLE_ID_ASC
-  ARTICLE_ID_DESC
-  GUESTBOOK_ID_ASC
-  GUESTBOOK_ID_DESC
-  COMMENT_ID_ASC
-  COMMENT_ID_DESC
-  INFOSIMULATION_ID_ASC
-  INFOSIMULATION_ID_DESC
-  NBSIMULATION_ID_ASC
-  NBSIMULATION_ID_DESC
-  USER_ID_ASC
-  USER_ID_DESC
-  PRIMARY_KEY_ASC
-  PRIMARY_KEY_DESC
-}
-
-"""
-A condition to be used against `ArticleGuestbookCommentSimulationUser` object
-types. All fields are tested for equality and combined with a logical ‘and.’
-"""
-input ArticleGuestbookCommentSimulationUserCondition {
-  """Checks for equality with the object’s `articleId` field."""
-  articleId: Int
-
-  """Checks for equality with the object’s `guestbookId` field."""
-  guestbookId: Int
-
-  """Checks for equality with the object’s `commentId` field."""
-  commentId: Int
-
-  """Checks for equality with the object’s `infosimulationId` field."""
-  infosimulationId: Int
-
-  """Checks for equality with the object’s `nbsimulationId` field."""
-  nbsimulationId: Int
-
-  """Checks for equality with the object’s `userId` field."""
-  userId: Int
-}
-
-"""A connection to a list of `User` values."""
-type UsersConnection {
-  """A list of `User` objects."""
-  nodes: [User]!
-
-  """
-  A list of edges which contains the `User` and cursor to aid in pagination.
-  """
-  edges: [UsersEdge!]!
-
-  """Information to aid in pagination."""
-  pageInfo: PageInfo!
-
-  """The count of *all* `User` you could get from the connection."""
-  totalCount: Int!
-}
-
-"""A `User` edge in the connection."""
-type UsersEdge {
-  """A cursor for use in pagination."""
-  cursor: Cursor
-
-  """The `User` at the end of the edge."""
-  node: User
-}
-
-"""Methods to use when ordering `User`."""
-enum UsersOrderBy {
-  NATURAL
-  ID_ASC
-  ID_DESC
-  PSEUDO_ASC
-  PSEUDO_DESC
-  PASSWORD_ASC
-  PASSWORD_DESC
-  EMAIL_ASC
-  EMAIL_DESC
-  AUTHOR_ASC
-  AUTHOR_DESC
-  ROLE_ASC
-  ROLE_DESC
+  TEXT_ASC
+  TEXT_DESC
+  FINISHED_ASC
+  FINISHED_DESC
   CREATED_AT_ASC
   CREATED_AT_DESC
   UPDATED_AT_ASC
@@ -1397,26 +147,17 @@ enum UsersOrderBy {
 }
 
 """
-A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+A condition to be used against `Todo` object types. All fields are tested for equality and combined with a logical ‘and.’
 """
-input UserCondition {
+input TodoCondition {
   """Checks for equality with the object’s `id` field."""
-  id: Int
+  id: UUID
 
-  """Checks for equality with the object’s `pseudo` field."""
-  pseudo: String
+  """Checks for equality with the object’s `text` field."""
+  text: String
 
-  """Checks for equality with the object’s `password` field."""
-  password: String
-
-  """Checks for equality with the object’s `email` field."""
-  email: String
-
-  """Checks for equality with the object’s `author` field."""
-  author: String
-
-  """Checks for equality with the object’s `role` field."""
-  role: Int
+  """Checks for equality with the object’s `finished` field."""
+  finished: Boolean
 
   """Checks for equality with the object’s `createdAt` field."""
   createdAt: Datetime
@@ -1429,727 +170,116 @@ input UserCondition {
 The root mutation type which contains root level fields which mutate data.
 """
 type Mutation {
-  """Creates a single `Article`."""
-  createArticle(
+  """Creates a single `Todo`."""
+  createTodo(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateArticleInput!
-  ): CreateArticlePayload
+    input: CreateTodoInput!
+  ): CreateTodoPayload
 
-  """Creates a single `ArticleGuestbookCommentSimulationUser`."""
-  createArticleGuestbookCommentSimulationUser(
+  """Updates a single `Todo` using its globally unique id and a patch."""
+  updateTodo(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateArticleGuestbookCommentSimulationUserInput!
-  ): CreateArticleGuestbookCommentSimulationUserPayload
+    input: UpdateTodoInput!
+  ): UpdateTodoPayload
 
-  """Creates a single `Comment`."""
-  createComment(
+  """Updates a single `Todo` using a unique key and a patch."""
+  updateTodoById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateCommentInput!
-  ): CreateCommentPayload
+    input: UpdateTodoByIdInput!
+  ): UpdateTodoPayload
 
-  """Creates a single `Guestbook`."""
-  createGuestbook(
+  """Deletes a single `Todo` using its globally unique id."""
+  deleteTodo(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateGuestbookInput!
-  ): CreateGuestbookPayload
+    input: DeleteTodoInput!
+  ): DeleteTodoPayload
 
-  """Creates a single `Infosimulation`."""
-  createInfosimulation(
+  """Deletes a single `Todo` using a unique key."""
+  deleteTodoById(
     """
     The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
     """
-    input: CreateInfosimulationInput!
-  ): CreateInfosimulationPayload
-
-  """Creates a single `Nbsimulation`."""
-  createNbsimulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateNbsimulationInput!
-  ): CreateNbsimulationPayload
-
-  """Creates a single `User`."""
-  createUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: CreateUserInput!
-  ): CreateUserPayload
-
-  """Updates a single `Article` using its globally unique id and a patch."""
-  updateArticle(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateArticleInput!
-  ): UpdateArticlePayload
-
-  """Updates a single `Article` using a unique key and a patch."""
-  updateArticleById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateArticleByIdInput!
-  ): UpdateArticlePayload
-
-  """
-  Updates a single `ArticleGuestbookCommentSimulationUser` using its globally unique id and a patch.
-  """
-  updateArticleGuestbookCommentSimulationUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateArticleGuestbookCommentSimulationUserInput!
-  ): UpdateArticleGuestbookCommentSimulationUserPayload
-
-  """
-  Updates a single `ArticleGuestbookCommentSimulationUser` using a unique key and a patch.
-  """
-  updateArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserIdInput!
-  ): UpdateArticleGuestbookCommentSimulationUserPayload
-
-  """Updates a single `Comment` using its globally unique id and a patch."""
-  updateComment(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateCommentInput!
-  ): UpdateCommentPayload
-
-  """Updates a single `Comment` using a unique key and a patch."""
-  updateCommentById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateCommentByIdInput!
-  ): UpdateCommentPayload
-
-  """Updates a single `Guestbook` using its globally unique id and a patch."""
-  updateGuestbook(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateGuestbookInput!
-  ): UpdateGuestbookPayload
-
-  """Updates a single `Guestbook` using a unique key and a patch."""
-  updateGuestbookById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateGuestbookByIdInput!
-  ): UpdateGuestbookPayload
-
-  """
-  Updates a single `Infosimulation` using its globally unique id and a patch.
-  """
-  updateInfosimulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateInfosimulationInput!
-  ): UpdateInfosimulationPayload
-
-  """Updates a single `Infosimulation` using a unique key and a patch."""
-  updateInfosimulationById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateInfosimulationByIdInput!
-  ): UpdateInfosimulationPayload
-
-  """
-  Updates a single `Nbsimulation` using its globally unique id and a patch.
-  """
-  updateNbsimulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateNbsimulationInput!
-  ): UpdateNbsimulationPayload
-
-  """Updates a single `Nbsimulation` using a unique key and a patch."""
-  updateNbsimulationById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateNbsimulationByIdInput!
-  ): UpdateNbsimulationPayload
-
-  """Updates a single `User` using its globally unique id and a patch."""
-  updateUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserInput!
-  ): UpdateUserPayload
-
-  """Updates a single `User` using a unique key and a patch."""
-  updateUserById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: UpdateUserByIdInput!
-  ): UpdateUserPayload
-
-  """Deletes a single `Article` using its globally unique id."""
-  deleteArticle(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteArticleInput!
-  ): DeleteArticlePayload
-
-  """Deletes a single `Article` using a unique key."""
-  deleteArticleById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteArticleByIdInput!
-  ): DeleteArticlePayload
-
-  """
-  Deletes a single `ArticleGuestbookCommentSimulationUser` using its globally unique id.
-  """
-  deleteArticleGuestbookCommentSimulationUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteArticleGuestbookCommentSimulationUserInput!
-  ): DeleteArticleGuestbookCommentSimulationUserPayload
-
-  """
-  Deletes a single `ArticleGuestbookCommentSimulationUser` using a unique key.
-  """
-  deleteArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserId(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserIdInput!
-  ): DeleteArticleGuestbookCommentSimulationUserPayload
-
-  """Deletes a single `Comment` using its globally unique id."""
-  deleteComment(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteCommentInput!
-  ): DeleteCommentPayload
-
-  """Deletes a single `Comment` using a unique key."""
-  deleteCommentById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteCommentByIdInput!
-  ): DeleteCommentPayload
-
-  """Deletes a single `Guestbook` using its globally unique id."""
-  deleteGuestbook(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteGuestbookInput!
-  ): DeleteGuestbookPayload
-
-  """Deletes a single `Guestbook` using a unique key."""
-  deleteGuestbookById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteGuestbookByIdInput!
-  ): DeleteGuestbookPayload
-
-  """Deletes a single `Infosimulation` using its globally unique id."""
-  deleteInfosimulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteInfosimulationInput!
-  ): DeleteInfosimulationPayload
-
-  """Deletes a single `Infosimulation` using a unique key."""
-  deleteInfosimulationById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteInfosimulationByIdInput!
-  ): DeleteInfosimulationPayload
-
-  """Deletes a single `Nbsimulation` using its globally unique id."""
-  deleteNbsimulation(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteNbsimulationInput!
-  ): DeleteNbsimulationPayload
-
-  """Deletes a single `Nbsimulation` using a unique key."""
-  deleteNbsimulationById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteNbsimulationByIdInput!
-  ): DeleteNbsimulationPayload
-
-  """Deletes a single `User` using its globally unique id."""
-  deleteUser(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserInput!
-  ): DeleteUserPayload
-
-  """Deletes a single `User` using a unique key."""
-  deleteUserById(
-    """
-    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
-    """
-    input: DeleteUserByIdInput!
-  ): DeleteUserPayload
+    input: DeleteTodoByIdInput!
+  ): DeleteTodoPayload
 }
 
-"""The output of our create `Article` mutation."""
-type CreateArticlePayload {
+"""The output of our create `Todo` mutation."""
+type CreateTodoPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `Article` that was created by this mutation."""
-  article: Article
+  """The `Todo` that was created by this mutation."""
+  todo: Todo
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Article`."""
-  userByUserId: User
-
-  """An edge for our `Article`. May be used by Relay 1."""
-  articleEdge(
-    """The method to use when ordering `Article`."""
-    orderBy: [ArticlesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticlesEdge
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TodosEdge
 }
 
-"""All input for the create `Article` mutation."""
-input CreateArticleInput {
+"""All input for the create `Todo` mutation."""
+input CreateTodoInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
 
-  """The `Article` to be created by this mutation."""
-  article: ArticleInput!
+  """The `Todo` to be created by this mutation."""
+  todo: TodoInput!
 }
 
-"""An input for mutations affecting `Article`"""
-input ArticleInput {
-  id: Int
-  title: String!
-  content: String!
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""
-The output of our create `ArticleGuestbookCommentSimulationUser` mutation.
-"""
-type CreateArticleGuestbookCommentSimulationUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  The `ArticleGuestbookCommentSimulationUser` that was created by this mutation.
-  """
-  articleGuestbookCommentSimulationUser: ArticleGuestbookCommentSimulationUser
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  An edge for our `ArticleGuestbookCommentSimulationUser`. May be used by Relay 1.
-  """
-  articleGuestbookCommentSimulationUserEdge(
-    """
-    The method to use when ordering `ArticleGuestbookCommentSimulationUser`.
-    """
-    orderBy: [ArticleGuestbookCommentSimulationUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticleGuestbookCommentSimulationUsersEdge
-}
-
-"""
-All input for the create `ArticleGuestbookCommentSimulationUser` mutation.
-"""
-input CreateArticleGuestbookCommentSimulationUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The `ArticleGuestbookCommentSimulationUser` to be created by this mutation.
-  """
-  articleGuestbookCommentSimulationUser: ArticleGuestbookCommentSimulationUserInput!
-}
-
-"""
-An input for mutations affecting `ArticleGuestbookCommentSimulationUser`
-"""
-input ArticleGuestbookCommentSimulationUserInput {
-  articleId: Int!
-  guestbookId: Int!
-  commentId: Int!
-  infosimulationId: Int!
-  nbsimulationId: Int!
-  userId: Int!
-}
-
-"""The output of our create `Comment` mutation."""
-type CreateCommentPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Comment` that was created by this mutation."""
-  comment: Comment
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Comment`."""
-  userByUserId: User
-
-  """Reads a single `Article` that is related to this `Comment`."""
-  articleByArticleId: Article
-
-  """Reads a single `Guestbook` that is related to this `Comment`."""
-  guestbookByGuestbookId: Guestbook
-
-  """An edge for our `Comment`. May be used by Relay 1."""
-  commentEdge(
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CommentsEdge
-}
-
-"""All input for the create `Comment` mutation."""
-input CreateCommentInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `Comment` to be created by this mutation."""
-  comment: CommentInput!
-}
-
-"""An input for mutations affecting `Comment`"""
-input CommentInput {
-  id: Int
-  content: String!
-  createdAt: Datetime
-  updatedAt: Datetime
-  deletedAt: Datetime
-  userId: Int
-  articleId: Int
-  guestbookId: Int
-}
-
-"""The output of our create `Guestbook` mutation."""
-type CreateGuestbookPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Guestbook` that was created by this mutation."""
-  guestbook: Guestbook
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Guestbook`."""
-  userByUserId: User
-
-  """An edge for our `Guestbook`. May be used by Relay 1."""
-  guestbookEdge(
-    """The method to use when ordering `Guestbook`."""
-    orderBy: [GuestbooksOrderBy!] = [PRIMARY_KEY_ASC]
-  ): GuestbooksEdge
-}
-
-"""All input for the create `Guestbook` mutation."""
-input CreateGuestbookInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `Guestbook` to be created by this mutation."""
-  guestbook: GuestbookInput!
-}
-
-"""An input for mutations affecting `Guestbook`"""
-input GuestbookInput {
-  id: Int
-  title: String!
-  content: String!
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""The output of our create `Infosimulation` mutation."""
-type CreateInfosimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Infosimulation` that was created by this mutation."""
-  infosimulation: Infosimulation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Infosimulation`."""
-  userByUserId: User
-
-  """An edge for our `Infosimulation`. May be used by Relay 1."""
-  infosimulationEdge(
-    """The method to use when ordering `Infosimulation`."""
-    orderBy: [InfosimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): InfosimulationsEdge
-}
-
-"""All input for the create `Infosimulation` mutation."""
-input CreateInfosimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `Infosimulation` to be created by this mutation."""
-  infosimulation: InfosimulationInput!
-}
-
-"""An input for mutations affecting `Infosimulation`"""
-input InfosimulationInput {
-  id: Int
-  year: Int!
-  aahAmount: String!
-  mvaAmount: String!
-  smichb: String!
-  smicnbtf: String!
-  ageMinimal: Int!
-  ageRetraite: Int!
-  disabilityRateMini: String!
-  disabilityRateMax: String!
-  majorationPlafonCouple: String!
-  coefPersonneACharge: String!
-  householdComposition: String!
-  nbChild: Int!
-  placeOfResidence: Boolean!
-  apl: String!
-  applicantAge: Int!
-  applicantDisability: Boolean!
-  applicantDisabilityRate: String!
-  applicantEligibilityAah: Boolean!
-  applicantEligibilityMva: Boolean!
-  applicantIncomeWithoutActivity: Int!
-  applicantIncomeWithActivity: Int!
-  spouseAge: Int
-  spouseDisability: Boolean
-  spouseDisabilityRate: String
-  spouseEligibilityAah: Boolean
-  spouseEligibilityMva: Boolean
-  spouseIncomeWithoutActivity: Int
-  spouseIncomeWithActivity: Int
-  childIncome1: Int
-  childIncome2: Int
-  childIncome3: Int
-  childIncome4: Int
-  childIncome5: Int
-  coefFoyer: String!
-  plafondFoyerAnnuel: String!
-  plafondFoyerMensuel: String!
-  eligibiliteAahFoyer: Boolean!
-  eligibiliteMvaFoyer: Boolean!
-  abattement2022: Int
-  assietteDemandeur: String!
-  assietteConjoint: String!
-  assietteEnfant: String!
-  assietteTotal: String!
-  aahMax: String!
-  montantAahSansMvaMensuel: String!
-  montantAahAvecMvaMensuel: String!
-  statusAah: String!
-  statusSimple: String!
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""The output of our create `Nbsimulation` mutation."""
-type CreateNbsimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Nbsimulation` that was created by this mutation."""
-  nbsimulation: Nbsimulation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Nbsimulation`."""
-  userByUserId: User
-
-  """An edge for our `Nbsimulation`. May be used by Relay 1."""
-  nbsimulationEdge(
-    """The method to use when ordering `Nbsimulation`."""
-    orderBy: [NbsimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NbsimulationsEdge
-}
-
-"""All input for the create `Nbsimulation` mutation."""
-input CreateNbsimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `Nbsimulation` to be created by this mutation."""
-  nbsimulation: NbsimulationInput!
-}
-
-"""An input for mutations affecting `Nbsimulation`"""
-input NbsimulationInput {
-  id: Int
-  content: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""The output of our create `User` mutation."""
-type CreateUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `User` that was created by this mutation."""
-  user: User
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
-}
-
-"""All input for the create `User` mutation."""
-input CreateUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """The `User` to be created by this mutation."""
-  user: UserInput!
-}
-
-"""An input for mutations affecting `User`"""
-input UserInput {
-  id: Int
-  pseudo: String!
-  password: String!
-  email: String!
-  author: String
-  role: Int!
+"""An input for mutations affecting `Todo`"""
+input TodoInput {
+  id: UUID
+  text: String!
+  finished: Boolean
   createdAt: Datetime
   updatedAt: Datetime
 }
 
-"""The output of our update `Article` mutation."""
-type UpdateArticlePayload {
+"""The output of our update `Todo` mutation."""
+type UpdateTodoPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `Article` that was updated by this mutation."""
-  article: Article
+  """The `Todo` that was updated by this mutation."""
+  todo: Todo
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Article`."""
-  userByUserId: User
-
-  """An edge for our `Article`. May be used by Relay 1."""
-  articleEdge(
-    """The method to use when ordering `Article`."""
-    orderBy: [ArticlesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticlesEdge
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TodosEdge
 }
 
-"""All input for the `updateArticle` mutation."""
-input UpdateArticleInput {
+"""All input for the `updateTodo` mutation."""
+input UpdateTodoInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2157,527 +287,27 @@ input UpdateArticleInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `Article` to be updated.
+  The globally unique `ID` which will identify a single `Todo` to be updated.
   """
   nodeId: ID!
 
   """
-  An object where the defined keys will be set on the `Article` being updated.
+  An object where the defined keys will be set on the `Todo` being updated.
   """
-  articlePatch: ArticlePatch!
+  todoPatch: TodoPatch!
 }
 
-"""
-Represents an update to a `Article`. Fields that are set will be updated.
-"""
-input ArticlePatch {
-  id: Int
-  title: String
-  content: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""All input for the `updateArticleById` mutation."""
-input UpdateArticleByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `Article` being updated.
-  """
-  articlePatch: ArticlePatch!
-  id: Int!
-}
-
-"""
-The output of our update `ArticleGuestbookCommentSimulationUser` mutation.
-"""
-type UpdateArticleGuestbookCommentSimulationUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  The `ArticleGuestbookCommentSimulationUser` that was updated by this mutation.
-  """
-  articleGuestbookCommentSimulationUser: ArticleGuestbookCommentSimulationUser
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  An edge for our `ArticleGuestbookCommentSimulationUser`. May be used by Relay 1.
-  """
-  articleGuestbookCommentSimulationUserEdge(
-    """
-    The method to use when ordering `ArticleGuestbookCommentSimulationUser`.
-    """
-    orderBy: [ArticleGuestbookCommentSimulationUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticleGuestbookCommentSimulationUsersEdge
-}
-
-"""
-All input for the `updateArticleGuestbookCommentSimulationUser` mutation.
-"""
-input UpdateArticleGuestbookCommentSimulationUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `ArticleGuestbookCommentSimulationUser` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `ArticleGuestbookCommentSimulationUser` being updated.
-  """
-  articleGuestbookCommentSimulationUserPatch: ArticleGuestbookCommentSimulationUserPatch!
-}
-
-"""
-Represents an update to a `ArticleGuestbookCommentSimulationUser`. Fields that are set will be updated.
-"""
-input ArticleGuestbookCommentSimulationUserPatch {
-  articleId: Int
-  guestbookId: Int
-  commentId: Int
-  infosimulationId: Int
-  nbsimulationId: Int
-  userId: Int
-}
-
-"""
-All input for the `updateArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserId` mutation.
-"""
-input UpdateArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `ArticleGuestbookCommentSimulationUser` being updated.
-  """
-  articleGuestbookCommentSimulationUserPatch: ArticleGuestbookCommentSimulationUserPatch!
-  articleId: Int!
-  guestbookId: Int!
-  commentId: Int!
-  infosimulationId: Int!
-  nbsimulationId: Int!
-  userId: Int!
-}
-
-"""The output of our update `Comment` mutation."""
-type UpdateCommentPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Comment` that was updated by this mutation."""
-  comment: Comment
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Comment`."""
-  userByUserId: User
-
-  """Reads a single `Article` that is related to this `Comment`."""
-  articleByArticleId: Article
-
-  """Reads a single `Guestbook` that is related to this `Comment`."""
-  guestbookByGuestbookId: Guestbook
-
-  """An edge for our `Comment`. May be used by Relay 1."""
-  commentEdge(
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CommentsEdge
-}
-
-"""All input for the `updateComment` mutation."""
-input UpdateCommentInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Comment` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `Comment` being updated.
-  """
-  commentPatch: CommentPatch!
-}
-
-"""
-Represents an update to a `Comment`. Fields that are set will be updated.
-"""
-input CommentPatch {
-  id: Int
-  content: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  deletedAt: Datetime
-  userId: Int
-  articleId: Int
-  guestbookId: Int
-}
-
-"""All input for the `updateCommentById` mutation."""
-input UpdateCommentByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `Comment` being updated.
-  """
-  commentPatch: CommentPatch!
-  id: Int!
-}
-
-"""The output of our update `Guestbook` mutation."""
-type UpdateGuestbookPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Guestbook` that was updated by this mutation."""
-  guestbook: Guestbook
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Guestbook`."""
-  userByUserId: User
-
-  """An edge for our `Guestbook`. May be used by Relay 1."""
-  guestbookEdge(
-    """The method to use when ordering `Guestbook`."""
-    orderBy: [GuestbooksOrderBy!] = [PRIMARY_KEY_ASC]
-  ): GuestbooksEdge
-}
-
-"""All input for the `updateGuestbook` mutation."""
-input UpdateGuestbookInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Guestbook` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `Guestbook` being updated.
-  """
-  guestbookPatch: GuestbookPatch!
-}
-
-"""
-Represents an update to a `Guestbook`. Fields that are set will be updated.
-"""
-input GuestbookPatch {
-  id: Int
-  title: String
-  content: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""All input for the `updateGuestbookById` mutation."""
-input UpdateGuestbookByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `Guestbook` being updated.
-  """
-  guestbookPatch: GuestbookPatch!
-  id: Int!
-}
-
-"""The output of our update `Infosimulation` mutation."""
-type UpdateInfosimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Infosimulation` that was updated by this mutation."""
-  infosimulation: Infosimulation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Infosimulation`."""
-  userByUserId: User
-
-  """An edge for our `Infosimulation`. May be used by Relay 1."""
-  infosimulationEdge(
-    """The method to use when ordering `Infosimulation`."""
-    orderBy: [InfosimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): InfosimulationsEdge
-}
-
-"""All input for the `updateInfosimulation` mutation."""
-input UpdateInfosimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Infosimulation` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `Infosimulation` being updated.
-  """
-  infosimulationPatch: InfosimulationPatch!
-}
-
-"""
-Represents an update to a `Infosimulation`. Fields that are set will be updated.
-"""
-input InfosimulationPatch {
-  id: Int
-  year: Int
-  aahAmount: String
-  mvaAmount: String
-  smichb: String
-  smicnbtf: String
-  ageMinimal: Int
-  ageRetraite: Int
-  disabilityRateMini: String
-  disabilityRateMax: String
-  majorationPlafonCouple: String
-  coefPersonneACharge: String
-  householdComposition: String
-  nbChild: Int
-  placeOfResidence: Boolean
-  apl: String
-  applicantAge: Int
-  applicantDisability: Boolean
-  applicantDisabilityRate: String
-  applicantEligibilityAah: Boolean
-  applicantEligibilityMva: Boolean
-  applicantIncomeWithoutActivity: Int
-  applicantIncomeWithActivity: Int
-  spouseAge: Int
-  spouseDisability: Boolean
-  spouseDisabilityRate: String
-  spouseEligibilityAah: Boolean
-  spouseEligibilityMva: Boolean
-  spouseIncomeWithoutActivity: Int
-  spouseIncomeWithActivity: Int
-  childIncome1: Int
-  childIncome2: Int
-  childIncome3: Int
-  childIncome4: Int
-  childIncome5: Int
-  coefFoyer: String
-  plafondFoyerAnnuel: String
-  plafondFoyerMensuel: String
-  eligibiliteAahFoyer: Boolean
-  eligibiliteMvaFoyer: Boolean
-  abattement2022: Int
-  assietteDemandeur: String
-  assietteConjoint: String
-  assietteEnfant: String
-  assietteTotal: String
-  aahMax: String
-  montantAahSansMvaMensuel: String
-  montantAahAvecMvaMensuel: String
-  statusAah: String
-  statusSimple: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""All input for the `updateInfosimulationById` mutation."""
-input UpdateInfosimulationByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `Infosimulation` being updated.
-  """
-  infosimulationPatch: InfosimulationPatch!
-  id: Int!
-}
-
-"""The output of our update `Nbsimulation` mutation."""
-type UpdateNbsimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Nbsimulation` that was updated by this mutation."""
-  nbsimulation: Nbsimulation
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Nbsimulation`."""
-  userByUserId: User
-
-  """An edge for our `Nbsimulation`. May be used by Relay 1."""
-  nbsimulationEdge(
-    """The method to use when ordering `Nbsimulation`."""
-    orderBy: [NbsimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NbsimulationsEdge
-}
-
-"""All input for the `updateNbsimulation` mutation."""
-input UpdateNbsimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Nbsimulation` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `Nbsimulation` being updated.
-  """
-  nbsimulationPatch: NbsimulationPatch!
-}
-
-"""
-Represents an update to a `Nbsimulation`. Fields that are set will be updated.
-"""
-input NbsimulationPatch {
-  id: Int
-  content: String
-  createdAt: Datetime
-  updatedAt: Datetime
-  userId: Int
-}
-
-"""All input for the `updateNbsimulationById` mutation."""
-input UpdateNbsimulationByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  An object where the defined keys will be set on the `Nbsimulation` being updated.
-  """
-  nbsimulationPatch: NbsimulationPatch!
-  id: Int!
-}
-
-"""The output of our update `User` mutation."""
-type UpdateUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `User` that was updated by this mutation."""
-  user: User
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
-}
-
-"""All input for the `updateUser` mutation."""
-input UpdateUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `User` to be updated.
-  """
-  nodeId: ID!
-
-  """
-  An object where the defined keys will be set on the `User` being updated.
-  """
-  userPatch: UserPatch!
-}
-
-"""Represents an update to a `User`. Fields that are set will be updated."""
-input UserPatch {
-  id: Int
-  pseudo: String
-  password: String
-  email: String
-  author: String
-  role: Int
+"""Represents an update to a `Todo`. Fields that are set will be updated."""
+input TodoPatch {
+  id: UUID
+  text: String
+  finished: Boolean
   createdAt: Datetime
   updatedAt: Datetime
 }
 
-"""All input for the `updateUserById` mutation."""
-input UpdateUserByIdInput {
+"""All input for the `updateTodoById` mutation."""
+input UpdateTodoByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2685,41 +315,38 @@ input UpdateUserByIdInput {
   clientMutationId: String
 
   """
-  An object where the defined keys will be set on the `User` being updated.
+  An object where the defined keys will be set on the `Todo` being updated.
   """
-  userPatch: UserPatch!
-  id: Int!
+  todoPatch: TodoPatch!
+  id: UUID!
 }
 
-"""The output of our delete `Article` mutation."""
-type DeleteArticlePayload {
+"""The output of our delete `Todo` mutation."""
+type DeleteTodoPayload {
   """
   The exact same `clientMutationId` that was provided in the mutation input,
   unchanged and unused. May be used by a client to track mutations.
   """
   clientMutationId: String
 
-  """The `Article` that was deleted by this mutation."""
-  article: Article
-  deletedArticleId: ID
+  """The `Todo` that was deleted by this mutation."""
+  todo: Todo
+  deletedTodoId: ID
 
   """
   Our root query field type. Allows us to run any query from our mutation payload.
   """
   query: Query
 
-  """Reads a single `User` that is related to this `Article`."""
-  userByUserId: User
-
-  """An edge for our `Article`. May be used by Relay 1."""
-  articleEdge(
-    """The method to use when ordering `Article`."""
-    orderBy: [ArticlesOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticlesEdge
+  """An edge for our `Todo`. May be used by Relay 1."""
+  todoEdge(
+    """The method to use when ordering `Todo`."""
+    orderBy: [TodosOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TodosEdge
 }
 
-"""All input for the `deleteArticle` mutation."""
-input DeleteArticleInput {
+"""All input for the `deleteTodo` mutation."""
+input DeleteTodoInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
@@ -2727,340 +354,17 @@ input DeleteArticleInput {
   clientMutationId: String
 
   """
-  The globally unique `ID` which will identify a single `Article` to be deleted.
+  The globally unique `ID` which will identify a single `Todo` to be deleted.
   """
   nodeId: ID!
 }
 
-"""All input for the `deleteArticleById` mutation."""
-input DeleteArticleByIdInput {
+"""All input for the `deleteTodoById` mutation."""
+input DeleteTodoByIdInput {
   """
   An arbitrary string value with no semantic meaning. Will be included in the
   payload verbatim. May be used to track mutations by the client.
   """
   clientMutationId: String
-  id: Int!
-}
-
-"""
-The output of our delete `ArticleGuestbookCommentSimulationUser` mutation.
-"""
-type DeleteArticleGuestbookCommentSimulationUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """
-  The `ArticleGuestbookCommentSimulationUser` that was deleted by this mutation.
-  """
-  articleGuestbookCommentSimulationUser: ArticleGuestbookCommentSimulationUser
-  deletedArticleGuestbookCommentSimulationUserId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """
-  An edge for our `ArticleGuestbookCommentSimulationUser`. May be used by Relay 1.
-  """
-  articleGuestbookCommentSimulationUserEdge(
-    """
-    The method to use when ordering `ArticleGuestbookCommentSimulationUser`.
-    """
-    orderBy: [ArticleGuestbookCommentSimulationUsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): ArticleGuestbookCommentSimulationUsersEdge
-}
-
-"""
-All input for the `deleteArticleGuestbookCommentSimulationUser` mutation.
-"""
-input DeleteArticleGuestbookCommentSimulationUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `ArticleGuestbookCommentSimulationUser` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""
-All input for the `deleteArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserId` mutation.
-"""
-input DeleteArticleGuestbookCommentSimulationUserByArticleIdAndGuestbookIdAndCommentIdAndInfosimulationIdAndNbsimulationIdAndUserIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  articleId: Int!
-  guestbookId: Int!
-  commentId: Int!
-  infosimulationId: Int!
-  nbsimulationId: Int!
-  userId: Int!
-}
-
-"""The output of our delete `Comment` mutation."""
-type DeleteCommentPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Comment` that was deleted by this mutation."""
-  comment: Comment
-  deletedCommentId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Comment`."""
-  userByUserId: User
-
-  """Reads a single `Article` that is related to this `Comment`."""
-  articleByArticleId: Article
-
-  """Reads a single `Guestbook` that is related to this `Comment`."""
-  guestbookByGuestbookId: Guestbook
-
-  """An edge for our `Comment`. May be used by Relay 1."""
-  commentEdge(
-    """The method to use when ordering `Comment`."""
-    orderBy: [CommentsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): CommentsEdge
-}
-
-"""All input for the `deleteComment` mutation."""
-input DeleteCommentInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Comment` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteCommentById` mutation."""
-input DeleteCommentByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: Int!
-}
-
-"""The output of our delete `Guestbook` mutation."""
-type DeleteGuestbookPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Guestbook` that was deleted by this mutation."""
-  guestbook: Guestbook
-  deletedGuestbookId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Guestbook`."""
-  userByUserId: User
-
-  """An edge for our `Guestbook`. May be used by Relay 1."""
-  guestbookEdge(
-    """The method to use when ordering `Guestbook`."""
-    orderBy: [GuestbooksOrderBy!] = [PRIMARY_KEY_ASC]
-  ): GuestbooksEdge
-}
-
-"""All input for the `deleteGuestbook` mutation."""
-input DeleteGuestbookInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Guestbook` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteGuestbookById` mutation."""
-input DeleteGuestbookByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: Int!
-}
-
-"""The output of our delete `Infosimulation` mutation."""
-type DeleteInfosimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Infosimulation` that was deleted by this mutation."""
-  infosimulation: Infosimulation
-  deletedInfosimulationId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Infosimulation`."""
-  userByUserId: User
-
-  """An edge for our `Infosimulation`. May be used by Relay 1."""
-  infosimulationEdge(
-    """The method to use when ordering `Infosimulation`."""
-    orderBy: [InfosimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): InfosimulationsEdge
-}
-
-"""All input for the `deleteInfosimulation` mutation."""
-input DeleteInfosimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Infosimulation` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteInfosimulationById` mutation."""
-input DeleteInfosimulationByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: Int!
-}
-
-"""The output of our delete `Nbsimulation` mutation."""
-type DeleteNbsimulationPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `Nbsimulation` that was deleted by this mutation."""
-  nbsimulation: Nbsimulation
-  deletedNbsimulationId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """Reads a single `User` that is related to this `Nbsimulation`."""
-  userByUserId: User
-
-  """An edge for our `Nbsimulation`. May be used by Relay 1."""
-  nbsimulationEdge(
-    """The method to use when ordering `Nbsimulation`."""
-    orderBy: [NbsimulationsOrderBy!] = [PRIMARY_KEY_ASC]
-  ): NbsimulationsEdge
-}
-
-"""All input for the `deleteNbsimulation` mutation."""
-input DeleteNbsimulationInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `Nbsimulation` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteNbsimulationById` mutation."""
-input DeleteNbsimulationByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: Int!
-}
-
-"""The output of our delete `User` mutation."""
-type DeleteUserPayload {
-  """
-  The exact same `clientMutationId` that was provided in the mutation input,
-  unchanged and unused. May be used by a client to track mutations.
-  """
-  clientMutationId: String
-
-  """The `User` that was deleted by this mutation."""
-  user: User
-  deletedUserId: ID
-
-  """
-  Our root query field type. Allows us to run any query from our mutation payload.
-  """
-  query: Query
-
-  """An edge for our `User`. May be used by Relay 1."""
-  userEdge(
-    """The method to use when ordering `User`."""
-    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
-  ): UsersEdge
-}
-
-"""All input for the `deleteUser` mutation."""
-input DeleteUserInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-
-  """
-  The globally unique `ID` which will identify a single `User` to be deleted.
-  """
-  nodeId: ID!
-}
-
-"""All input for the `deleteUserById` mutation."""
-input DeleteUserByIdInput {
-  """
-  An arbitrary string value with no semantic meaning. Will be included in the
-  payload verbatim. May be used to track mutations by the client.
-  """
-  clientMutationId: String
-  id: Int!
+  id: UUID!
 }
